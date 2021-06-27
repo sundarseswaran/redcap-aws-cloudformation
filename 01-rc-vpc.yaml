@@ -137,6 +137,7 @@ Resources:
     Properties:
       CidrBlock: !Ref a2cidr
       AvailabilityZone: !Join [ "", [ !Ref 'AWS::Region', "b" ] ]
+      MapPublicIpOnLaunch: 'True'
       VpcId: !Ref 'vpc27bc775f'
       Tags:
         - Key: Name
@@ -155,6 +156,7 @@ Resources:
     Properties:
       CidrBlock: !Ref a1cidr
       AvailabilityZone: !Join [ "", [ !Ref 'AWS::Region', "a" ] ]
+      MapPublicIpOnLaunch: 'True'
       VpcId: !Ref 'vpc27bc775f'
       Tags:
         - Key: Name
