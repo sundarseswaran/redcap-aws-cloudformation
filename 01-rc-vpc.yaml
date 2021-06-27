@@ -229,6 +229,11 @@ Resources:
       Tags:
         - Key: Name
           Value: App Security Group
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        CidrIp: !Ref 'AccessCidr'
+        FromPort: 0
+        ToPort: 65535
   DataSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
