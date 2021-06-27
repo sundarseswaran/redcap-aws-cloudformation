@@ -25,7 +25,7 @@ The features of using this architecture are as follows:
 * Data is encrypted by default at rest and in flight (in accordance with HIPAA)
 * Managed services are used that provide automated patching and maintenance of OS, middleware, and database software
 * Database backups are performed automatically to enable operational and disaster recovery
-* [The design results in a reasonable monthly cost](https://calculator.s3.amazonaws.com/index.html#r=IAD&key=calc-42CFC1C0-3356-4A35-8697-0A9567A8EA3B)
+* [The design results in a reasonable monthly cost](https://calculator.s3.amazonaws.com/index.html#r=IAD&key=calc-42CFC1C0-3356-4A35-8697-0A9567A8EA3B) 
 
 A high-level diagram showing how the different functions of REDCap map to AWS Services is shown below.  
 ![alt-text](https://github.com/vanderbilt-redcap/redcap-aws-cloudformation/blob/master/images/AWS%20Project%20REDCap%20Block%20Diagram.png "AWS REDCap High-Level Diagram")
@@ -95,7 +95,7 @@ Using AWS Relational Database Services (RDS) you can [pull log files from you Au
 
 #### Access Running REDCap Instances
 If you need to access the command line on the running REDCap instances, this can be done by using the [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html).   It lets you manage your Amazon EC2 instances through an interactive one-click browser-based shell or through the AWS CLI. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys.  Just go to the the [AWS Systems Manager Session Manager Console](https://console.aws.amazon.com/systems-manager/session-manager/) and **click Start session**.  You'll then see a list of your REDCap instances.  Select the one that you want to access and **click Start session**.  Now you have a shell with sudoers access.
-![alt-text](https://github.com/vanderbilt-redcap/redcap-aws-cloudformation/blob/master/images/redcap-session-manager.gif "REDCap Session Manager demo")
+![alt-text](https://github.com/vanderbilt-redcap/redcap-aws-cloudformation/blob/master/images/redcap-session-manager.gif "REDCap Session Manager demo") 
 
 #### Fault tolerance and backups
 Elastic Beanstalk keeps a highly available copy of your current and previous REDCap application versions as well as your environment configuration.  This can be used to re-deploy or re-create your REDCap application environment at any time and serves as a 'backup'.  You can also [clone an Elastic Beanstalk environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.clone.html) if you want a temporary environment for testing or as a part of a recovery exercise.  High availability and fault tolerance are provided are achieved by [configuring your environment to have a minimum of 2 instances](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html).  Elastic Beanstalk will deploy these REDCap application instances over multiple availability zones.  If an instance is unhealthy it will automatically be removed and replaced.
