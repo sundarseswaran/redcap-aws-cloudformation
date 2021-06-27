@@ -90,6 +90,7 @@ Parameters:
       - t2.large
       - t2.xlarge
       - t2.2xlarge
+      - t3.micro
       - m3.medium
       - m3.large
       - m3.xlarge
@@ -134,7 +135,7 @@ Parameters:
       - r4.8xlarge
       - r4.16xlarge
     ConstraintDescription: Must be a valid Amazon EC2 instance type.
-    Default: t2.micro
+    Default: t3.micro
     Description: The Amazon EC2 instance type for your web instances.
     Type: String
   PHPVersion:
@@ -154,7 +155,7 @@ Parameters:
   EBEndpoint:
     Description: "The unique name to use for your Elastic Beanstalk URL (will be rendered http://(EBEndpoint).(region).elasticbeanstalk.com)"
     Type: String
-    Default: myREDCapp
+    Default: seqindia
   UseRoute53Boolean:
     AllowedValues:
       - true

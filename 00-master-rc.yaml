@@ -246,6 +246,7 @@ Parameters:
       - t2.large
       - t2.xlarge
       - t2.2xlarge
+      - t3.micro
       - m3.medium
       - m3.large
       - m3.xlarge
@@ -290,7 +291,7 @@ Parameters:
       - r4.8xlarge
       - r4.16xlarge
     ConstraintDescription: Must be a valid Amazon EC2 instance type.
-    Default: t2.micro
+    Default: t3.micro
     Description: The Amazon EC2 instance type for your web instances.
     Type: String
   WebAsgMax:
@@ -372,7 +373,7 @@ Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/redcap-aws-cloudformation/01-rc-vpc.yaml
+      TemplateURL: https://elasticbeanstalk-us-east-1-035065451423.s3.amazonaws.com/redcap-aws-cloudformation-master/01-rc-vpc.yaml
       Parameters:
         AccessCidr: !Ref 'AccessCidr'
         RedcapS3Bucket: !Ref 'RedcapS3Bucket'
@@ -392,7 +393,7 @@ Resources:
       Parameters:
         R53HostedZoneId: !Ref 'HostedZoneId'
         R53DomainName: !Join ['', [!Ref DomainName, '.', !Ref HostedZoneName]]
-      TemplateURL: https://s3.amazonaws.com/redcap-aws-cloudformation/01-rc-certificate.yaml
+      TemplateURL: https://elasticbeanstalk-us-east-1-035065451423.s3.amazonaws.com/redcap-aws-cloudformation-master/01-rc-certificate.yaml
   redcapelasticbeanstalk:
     DependsOn: [ VPCStack ]
     Type: AWS::CloudFormation::Stack
@@ -468,7 +469,7 @@ Resources:
           !GetAtt 'VPCStack.Outputs.EBInstanceProfile'
         TempEC2InstanceProfile:
           !GetAtt 'VPCStack.Outputs.TempEC2InstanceProfile'
-      TemplateURL: https://s3.amazonaws.com/redcap-aws-cloudformation/02-rc-elasticbeanstalk.yaml
+      TemplateURL: https://elasticbeanstalk-us-east-1-035065451423.s3.amazonaws.com/redcap-aws-cloudformation-master/02-rc-elasticbeanstalk.yaml
   route53:
     Condition: DeployRoute53
     DependsOn: redcapelasticbeanstalk
@@ -483,7 +484,7 @@ Resources:
           !Ref HostedZoneName
         DomainName:
           !Ref DomainName
-      TemplateURL: https://s3.amazonaws.com/redcap-aws-cloudformation/03-rc-route53.yaml
+      TemplateURL: https://elasticbeanstalk-us-east-1-035065451423.s3.amazonaws.com/redcap-aws-cloudformation-master/03-rc-route53.yaml
 
 Outputs:
   REDCapURL:
